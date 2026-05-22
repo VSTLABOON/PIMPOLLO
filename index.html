@@ -12,8 +12,9 @@
     --guinda-mid: #8a1a2a;
     --guinda-light: #a82235;
     --cream: #f0e6de;
-    --gold-soft: #d4a870;
-    --whisper: #b89888;
+    --gold-dark: #8c5e32; /* Tono dorado más oscuro para contraste */
+    --charcoal: #1a0d10;  /* Negro elegante para máxima legibilidad */
+    --muted-dark: #4a3538;
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -21,7 +22,7 @@
   body {
     background: var(--ink);
     font-family: 'Cormorant Garamond', Georgia, serif;
-    color: var(--cream);
+    color: var(--charcoal);
     min-height: 100vh;
     display: flex;
     align-items: center;
@@ -40,13 +41,13 @@
     z-index: 999;
   }
 
-  /* Contenedor Principal del Espejo */
+  /* Contenedor Principal del Espejo - Centrado absoluto en móviles */
   .mirror-frame {
     position: relative;
-    width: clamp(320px, 90vw, 440px);
-    height: clamp(500px, 80vh, 680px);
+    width: clamp(290px, 85vw, 440px);
+    height: clamp(520px, 78vh, 680px);
     background: rgba(12, 3, 5, 0.6);
-    border-radius: 200px 200px 30px 30px; /* Arco de medio punto de estilo clásico */
+    border-radius: 200px 200px 30px 30px; 
     padding: 16px;
     box-shadow: 
       0 0 0 1px rgba(212, 168, 112, 0.2),
@@ -58,6 +59,7 @@
     justify-content: center;
     overflow: hidden;
     animation: fadeIn 2.5s ease;
+    margin: auto; /* Asegura el centrado en flexbox móvil */
   }
 
   /* El lienzo que contiene el Video Secreto */
@@ -78,25 +80,25 @@
     transition: opacity 1s ease;
   }
 
-  /* El Velo de Cristal (Glassmorphism) */
+  /* El Velo de Cristal (Glassmorphism) - Ajustado para legibilidad clara */
   .glass-veil {
     position: absolute;
     inset: 0;
-    background: rgba(107, 18, 32, 0.05);
-    backdrop-filter: blur(25px) saturate(120%);
-    -webkit-backdrop-filter: blur(25px) saturate(120%);
+    background: rgba(240, 230, 222, 0.85); /* Fondo claro opaco para contrastar con el cabello */
+    backdrop-filter: blur(30px) saturate(100%);
+    -webkit-backdrop-filter: blur(30px) saturate(100%);
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     text-align: center;
-    padding: 40px;
+    padding: 32px;
     transition: all 1.2s cubic-bezier(0.25, 1, 0.5, 1);
     z-index: 10;
     pointer-events: auto;
   }
 
-  /* Contenido sobre el velo empañado */
+  /* Contenido sobre el velo - Letras Negras */
   .veil-content {
     transition: opacity 0.8s ease;
     max-width: 280px;
@@ -104,30 +106,30 @@
 
   .veil-label {
     font-family: 'Cinzel', serif;
-    font-size: 8px;
+    font-size: 9px;
     letter-spacing: 6px;
-    color: var(--gold-soft);
+    color: var(--gold-dark);
     text-transform: uppercase;
     margin-bottom: 24px;
-    opacity: 0.7;
+    font-weight: 500;
   }
 
   .veil-title {
     font-family: 'Cinzel', serif;
-    font-size: 20px;
-    font-weight: 400;
+    font-size: 22px;
+    font-weight: 500;
     letter-spacing: 3px;
     line-height: 1.5;
-    color: var(--cream);
+    color: var(--charcoal);
     margin-bottom: 30px;
-    text-shadow: 0 4px 10px rgba(0,0,0,0.5);
   }
 
   .veil-instruction {
-    font-size: 15px;
+    font-size: 16px;
     font-style: italic;
-    color: var(--whisper);
+    color: var(--muted-dark);
     line-height: 1.8;
+    font-weight: 400;
   }
 
   /* Efecto de Desvanecimiento al interactuar */
@@ -153,7 +155,7 @@
   .gold-line {
     width: 60px;
     height: 1px;
-    background: linear-gradient(90deg, transparent, var(--gold-soft), transparent);
+    background: linear-gradient(90deg, transparent, var(--gold-dark), transparent);
     margin: 20px auto 0;
   }
 
@@ -169,7 +171,7 @@
   <div class="mirror-canvas">
     
     <video autoplay loop muted playsinline>
-      <source src="amor.mp4" type="video/mp4">
+      <source src="tu_video_de_samara.mp4" type="video/mp4">
       Tu navegador no soporta videos en HTML.
     </video>
 
