@@ -2,34 +2,35 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>El Espejo de Venus — Eymi Samara</title>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=Cinzel:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Cinzel:wght@400;500&display=swap" rel="stylesheet">
 <style>
   :root {
     --ink: #0c0305;
     --guinda: #6b1220;
-    --guinda-mid: #8a1a2a;
-    --guinda-light: #a82235;
-    --cream: #f0e6de;
-    --gold-dark: #8c5e32; /* Tono dorado más oscuro para contraste */
-    --charcoal: #1a0d10;  /* Negro elegante para máxima legibilidad */
-    --muted-dark: #4a3538;
+    --gold-dark: #61401b; /* Dorado profundo para máximo contraste */
   }
 
-  * { margin: 0; padding: 0; box-sizing: border-box; }
+  * { 
+    margin: 0; 
+    padding: 0; 
+    box-sizing: border-box; 
+    -webkit-tap-highlight-color: transparent;
+  }
   
+  /* Contenedor dinámico para asegurar centrado perfecto en móviles */
   body {
     background: var(--ink);
     font-family: 'Cormorant Garamond', Georgia, serif;
-    color: var(--charcoal);
-    min-height: 100vh;
+    width: 100vw;
+    height: 100dvh; /* Altura dinámica que se adapta al navegador móvil */
     display: flex;
     align-items: center;
     justify-content: center;
     overflow: hidden;
     position: relative;
-    background-image: radial-gradient(ellipse 70% 60% at 50% 50%, rgba(107,18,32,0.2) 0%, transparent 100%);
+    background-image: radial-gradient(ellipse 70% 60% at 50% 50%, rgba(107,18,32,0.25) 0%, transparent 100%);
   }
 
   /* Textura de grano clásica */
@@ -41,33 +42,32 @@
     z-index: 999;
   }
 
-  /* Contenedor Principal del Espejo - Centrado absoluto en móviles */
+  /* Estructura del Espejo - Proporciones cuidadas y centradas */
   .mirror-frame {
     position: relative;
-    width: clamp(290px, 85vw, 440px);
-    height: clamp(520px, 78vh, 680px);
-    background: rgba(12, 3, 5, 0.6);
-    border-radius: 200px 200px 30px 30px; 
-    padding: 16px;
+    width: clamp(290px, 86vw, 420px);
+    height: clamp(500px, 76vh, 640px);
+    background: rgba(12, 3, 5, 0.8);
+    border-radius: 210px 210px 40px 40px; /* Arco clásico */
+    padding: 14px;
     box-shadow: 
-      0 0 0 1px rgba(212, 168, 112, 0.2),
-      0 30px 100px rgba(0, 0, 0, 0.8),
-      inset 0 0 40px rgba(107, 18, 32, 0.3);
+      0 0 0 1px rgba(212, 168, 112, 0.25),
+      0 25px 70px rgba(0, 0, 0, 0.9),
+      inset 0 0 30px rgba(107, 18, 32, 0.4);
     border: 2px solid rgba(212, 168, 112, 0.15);
     display: flex;
     align-items: center;
     justify-content: center;
     overflow: hidden;
-    animation: fadeIn 2.5s ease;
-    margin: auto; /* Asegura el centrado en flexbox móvil */
+    animation: fadeIn 2s ease-out;
   }
 
-  /* El lienzo que contiene el Video Secreto */
+  /* Lienzo del Video */
   .mirror-canvas {
     position: relative;
     width: 100%;
     height: 100%;
-    border-radius: 185px 185px 20px 20px;
+    border-radius: 195px 195px 26px 26px;
     overflow: hidden;
     background: #000;
   }
@@ -76,92 +76,88 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
-    opacity: 0.85;
-    transition: opacity 1s ease;
+    opacity: 0.1; /* Oculto casi por completo bajo el velo */
+    transition: opacity 1.2s cubic-bezier(0.25, 1, 0.5, 1);
   }
 
-  /* El Velo de Cristal (Glassmorphism) - Ajustado para legibilidad clara */
+  /* El Velo de Cristal - Máxima opacidad clara para anular el fondo del video */
   .glass-veil {
     position: absolute;
     inset: 0;
-    background: rgba(240, 230, 222, 0.85); /* Fondo claro opaco para contrastar con el cabello */
-    backdrop-filter: blur(30px) saturate(100%);
-    -webkit-backdrop-filter: blur(30px) saturate(100%);
+    background: rgba(255, 255, 255, 0.88); /* Fondo blanco liso que bloquea el cabello */
+    backdrop-filter: blur(35px) saturate(100%);
+    -webkit-backdrop-filter: blur(35px) saturate(100%);
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     text-align: center;
-    padding: 32px;
+    padding: 36px;
     transition: all 1.2s cubic-bezier(0.25, 1, 0.5, 1);
     z-index: 10;
-    pointer-events: auto;
   }
 
-  /* Contenido sobre el velo - Letras Negras */
+  /* Letras estrictamente Negras y legibles */
   .veil-content {
     transition: opacity 0.8s ease;
-    max-width: 280px;
+    max-width: 260px;
   }
 
   .veil-label {
     font-family: 'Cinzel', serif;
     font-size: 9px;
     letter-spacing: 6px;
-    color: var(--gold-dark);
+    color: var(--gold-dark); /* Dorado oscuro contrastante */
     text-transform: uppercase;
-    margin-bottom: 24px;
+    margin-bottom: 20px;
     font-weight: 500;
   }
 
   .veil-title {
     font-family: 'Cinzel', serif;
-    font-size: 22px;
+    font-size: 24px;
     font-weight: 500;
-    letter-spacing: 3px;
-    line-height: 1.5;
-    color: var(--charcoal);
-    margin-bottom: 30px;
+    letter-spacing: 4px;
+    line-height: 1.4;
+    color: #000000; /* Negro puro */
+    margin-bottom: 24px;
   }
 
   .veil-instruction {
-    font-size: 16px;
+    font-size: 17px;
     font-style: italic;
-    color: var(--muted-dark);
+    color: #000000; /* Negro puro */
     line-height: 1.8;
     font-weight: 400;
   }
 
-  /* Efecto de Desvanecimiento al interactuar */
+  /* Línea divisoria en el velo */
+  .gold-line {
+    width: 50px;
+    height: 1px;
+    background: var(--gold-dark);
+    margin: 16px auto 0;
+    opacity: 0.5;
+  }
+
+  /* Interacción interactiva (Mouse y Táctil) */
   .mirror-frame:hover .glass-veil,
   .mirror-frame:active .glass-veil {
     backdrop-filter: blur(0px) saturate(100%);
     -webkit-backdrop-filter: blur(0px) saturate(100%);
-    background: rgba(0, 0, 0, 0.2);
-  }
-
-  .mirror-frame:hover .veil-content,
-  .mirror-frame:active .veil-content {
+    background: rgba(0, 0, 0, 0.1);
     opacity: 0;
     pointer-events: none;
   }
 
   .mirror-frame:hover video,
   .mirror-frame:active video {
-    opacity: 1;
-  }
-
-  /* Adorno clásico debajo del marco */
-  .gold-line {
-    width: 60px;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, var(--gold-dark), transparent);
-    margin: 20px auto 0;
+    opacity: 1; /* El video se revela al 100% de nitidez */
   }
 
   @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
+    from { opacity: 0; transform: scale(0.96); }
+    to { opacity: 1; transform: scale(1); }
   }
 </style>
 </head>
